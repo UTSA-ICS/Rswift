@@ -56,7 +56,73 @@ get_token <- function (credsFileName) {
 #' @parm - container - The container name
 #' @parm - object - The object name
 #' @export
-swift <- function (credsFileName, swiftCmd=NULL, container=NULL, object=NULL) {
+swift <- function (credsFileName, container=NULL, object=NULL) {
+  Xauth_token = paste("X-AUTH-TOKEN: ", get_token(credsFileName))
+  if (is.null(swiftCmd) || swiftCmd == "list") {
+    req <- getURL("https://10.245.123.2:8080/swift/v1", ssl.verifypeer = 0, httpheader = Xauth_token)
+  } else if (swiftCmd == "get") {
+    url <- paste("https://10.245.123.2:8080/swift/v1/", container, "/", object, sep="")
+    req <- getURL(url, ssl.verifypeer = 0, httpheader = Xauth_token)
+  } else if (swiftCmd == "put") {
+    url <- paste("https://10.245.123.2:8080/swift/v1/", container, "/", object, sep="")
+    req <- getURL(url, ssl.verifypeer = 0, httpheader = Xauth_token)
+  }
+  return (req)
+}
+
+#' Issue swift commands
+#'
+#' Issues client commands against the opoenstack swift service
+#' @param credsFileName - Filename where user credentials are stored
+#' @parm - swiftCmd - The specified swift command
+#' @parm - container - The container name
+#' @parm - object - The object name
+#' @export
+swift.list <- function (credsFileName, container=NULL, object=NULL) {
+  Xauth_token = paste("X-AUTH-TOKEN: ", get_token(credsFileName))
+  if (is.null(swiftCmd) || swiftCmd == "list") {
+    req <- getURL("https://10.245.123.2:8080/swift/v1", ssl.verifypeer = 0, httpheader = Xauth_token)
+  } else if (swiftCmd == "get") {
+    url <- paste("https://10.245.123.2:8080/swift/v1/", container, "/", object, sep="")
+    req <- getURL(url, ssl.verifypeer = 0, httpheader = Xauth_token)
+  } else if (swiftCmd == "put") {
+    url <- paste("https://10.245.123.2:8080/swift/v1/", container, "/", object, sep="")
+    req <- getURL(url, ssl.verifypeer = 0, httpheader = Xauth_token)
+  }
+  return (req)
+}
+
+#' Issue swift commands
+#'
+#' Issues client commands against the opoenstack swift service
+#' @param credsFileName - Filename where user credentials are stored
+#' @parm - swiftCmd - The specified swift command
+#' @parm - container - The container name
+#' @parm - object - The object name
+#' @export
+swift.get <- function (credsFileName, container=NULL, object=NULL) {
+  Xauth_token = paste("X-AUTH-TOKEN: ", get_token(credsFileName))
+  if (is.null(swiftCmd) || swiftCmd == "list") {
+    req <- getURL("https://10.245.123.2:8080/swift/v1", ssl.verifypeer = 0, httpheader = Xauth_token)
+  } else if (swiftCmd == "get") {
+    url <- paste("https://10.245.123.2:8080/swift/v1/", container, "/", object, sep="")
+    req <- getURL(url, ssl.verifypeer = 0, httpheader = Xauth_token)
+  } else if (swiftCmd == "put") {
+    url <- paste("https://10.245.123.2:8080/swift/v1/", container, "/", object, sep="")
+    req <- getURL(url, ssl.verifypeer = 0, httpheader = Xauth_token)
+  }
+  return (req)
+}
+
+#' Issue swift commands
+#'
+#' Issues client commands against the opoenstack swift service
+#' @param credsFileName - Filename where user credentials are stored
+#' @parm - swiftCmd - The specified swift command
+#' @parm - container - The container name
+#' @parm - object - The object name
+#' @export
+swift.put <- function (credsFileName, container=NULL, object=NULL) {
   Xauth_token = paste("X-AUTH-TOKEN: ", get_token(credsFileName))
   if (is.null(swiftCmd) || swiftCmd == "list") {
     req <- getURL("https://10.245.123.2:8080/swift/v1", ssl.verifypeer = 0, httpheader = Xauth_token)
